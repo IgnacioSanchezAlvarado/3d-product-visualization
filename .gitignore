@@ -5,3 +5,12 @@
 .beads-credential-key
 .beads/proxieddb/
 *.gate.lock*
+
+# Build output and local state (fork hygiene)
+node_modules/
+cdk.out/
+.beads/
+
+# Upstream tracks this file as a template; the deploy runbook tells the owner to
+# mark it skip-worktree so the real values are never committed.
+deployment/amazon-gamelift-streams/config/.env
