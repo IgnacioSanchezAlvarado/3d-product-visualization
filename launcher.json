@@ -1,0 +1,38 @@
+{
+  "name": "3d-product-visualization",
+  "title": "Realtime 3D product visualization on AWS",
+  "description": "Interactive 3D product configurator streamed from an Amazon GameLift Streams stream group behind a CloudFront web front end. Start raises the stream group's always-on capacity to the deployed minimum; Stop sets both capacities to zero while the CDK pipeline and web front end stay deployed.",
+  "provider": "gamelift-streams",
+  "account": "${demo.3d_product_visualization.account}",
+  "region": "${demo.3d_product_visualization.region}",
+  "role_arn": "${demo.3d_product_visualization.role_arn}",
+  "start": {
+    "stream_group_id": "${demo.3d_product_visualization.stream_group_id}",
+    "location": "${demo.3d_product_visualization.region}",
+    "always_on_capacity_min": 2,
+    "on_demand_capacity_min": 0
+  },
+  "stop": {
+    "stream_group_id": "${demo.3d_product_visualization.stream_group_id}",
+    "location": "${demo.3d_product_visualization.region}",
+    "always_on_capacity_min": 0,
+    "on_demand_capacity_min": 0
+  },
+  "hourly_cost_usd": 3.0,
+  "max_running_minutes": 120,
+  "keep": [
+    "CDK pipeline",
+    "web front end (S3, CloudFront, WAF, Lambda)"
+  ],
+  "url_source": {
+    "stack": "pvagls-main-frontend-<deploy-id>",
+    "output": "AppURL"
+  },
+  "stream_group_source": {
+    "stack": "pvagls-main-backend-<deploy-id>",
+    "output": "GLSStreamGroupId"
+  },
+  "links": {
+    "repository": "https://github.com/IgnacioSanchezAlvarado/3d-product-visualization"
+  }
+}
