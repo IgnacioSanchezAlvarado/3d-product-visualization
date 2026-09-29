@@ -8,11 +8,7 @@ fail=0
 check() { if "$@"; then echo "ok:   $CHECK"; else echo "FAIL: $CHECK" >&2; fail=1; fi; }
 
 # 1. Previous verify_cmd: showcase content and launcher.json.
-if [ -e scripts/verify-showcase.sh ]; then
-  CHECK="scripts/verify-showcase.sh"; check bash scripts/verify-showcase.sh
-else
-  echo "skip: scripts/verify-showcase.sh not present yet"
-fi
+CHECK="scripts/verify-showcase.sh"; check bash scripts/verify-showcase.sh
 
 # 2. CloudFormation stacks from infra/ (none today; the owner deploys the guidance by hand).
 if [ -d infra ] && [ -n "${AGP_OUTPUTS_FILE:-}" ] && [ -f "$AGP_OUTPUTS_FILE" ]; then
