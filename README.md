@@ -12,6 +12,10 @@
 8. [Known issues and additional considerations](#Known-issues-and-additional-considerations)
 9. [Authors](#authors)
 
+## On the demo hub
+
+This fork is shown on the owner's solution hub. Between meetings the demo is stopped: the stream group capacity is set to zero while the CDK pipeline and the web front end stay deployed. It is started from the hub's card, which shows the hourly cost while running. The owner's steps live in [docs/deploy-runbook.md](./docs/deploy-runbook.md) (deploying the guidance by hand) and [docs/launcher-setup.md](./docs/launcher-setup.md) (handing the deployed values to the demo-launcher). On the owner's platform the deploy command is `bash scripts/deploy.sh` and the verify command is `bash scripts/verify.sh`.
+
 ## Overview
 
 This Guidance demonstrates how to build and deploy a real-time 3D product visualization solution using Amazon GameLift Streams on AWS. It provides a complete implementation that enables customers to stream interactive 3D product experiences directly to web browsers without requiring end-users to download or install any software.
@@ -196,10 +200,6 @@ Follow these steps from a terminal to deploy the Guidance to your AWS account:
     ```bash
     make -f makefile.aws open-website/main
     ```
-
-### Platform deploy and verify commands
-
-On the owner's agentic platform this fork's deploy command is `bash scripts/deploy.sh` and its verify command is `bash scripts/verify.sh`. The guidance itself is still deployed by hand with the steps above, so `scripts/deploy.sh` only acts on an `infra/` folder, Python dependencies or systemd user units if the repo gains them; `scripts/verify.sh` runs `scripts/verify-showcase.sh` and those same checks.
 
 ## Deployment validation, User guide and Cleanup
 For detailed guidance deployment steps, running the guidance and cleanup resources as a user please see the [Implementation Guide](./deployment/amazon-gamelift-streams/readme.md)
