@@ -25,6 +25,11 @@ fi
 
 git fetch upstream
 
+if git merge-base --is-ancestor upstream/main main; then
+  echo "already up to date (main has every upstream/main commit; $(git rev-list --count upstream/main..main) fork commit(s) ahead)"
+  exit 0
+fi
+
 if ! git merge-base --is-ancestor main upstream/main; then
   echo "cannot fast-forward: main has diverged from upstream/main"
   echo "commits on main not in upstream/main:"
@@ -35,11 +40,6 @@ if ! git merge-base --is-ancestor main upstream/main; then
 fi
 
 count="$(git rev-list --count main..upstream/main)"
-if [[ "$count" -eq 0 ]]; then
-  echo "already up to date"
-  exit 0
-fi
-
 git merge --ff-only upstream/main
 echo "applied $count commit(s) from upstream/main"
 echo "next: push a branch and open a PR to IgnacioSanchezAlvarado/3d-product-visualization (never upstream)"
