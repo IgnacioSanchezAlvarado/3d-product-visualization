@@ -22,15 +22,15 @@ else
   bad "$md does not exist"
 fi
 
-# 2. The Architecture section embeds an image that exists (relative to docs/, or to the repo root).
+# 2. The Architecture section embeds an image that exists, relative to docs/ (the file's own folder).
 img="$(awk '/^## /{on=($0=="## Architecture")} on' "$md" 2>/dev/null \
   | grep -oE '!\[[^]]*\]\([^) ]+' | head -n1 | sed -E 's/.*\(//')"
 if [ -z "$img" ]; then
   bad "$md ## Architecture embeds no image"
-elif [ -f "docs/$img" ] || [ -f "$img" ]; then
+elif [ -f "docs/$img" ]; then
   ok "$md ## Architecture image $img exists"
 else
-  bad "$md ## Architecture image $img not found"
+  bad "$md ## Architecture image $img not found relative to docs/"
 fi
 
 # 3. At least one PNG in docs/showcase/.

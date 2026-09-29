@@ -11,7 +11,7 @@ The demo is a complete, working example rather than a sketch. It ships a web fro
 
 ## Architecture
 
-![Architecture diagram](docs/showcase/architecture.png)
+![Architecture diagram](showcase/architecture.png)
 
 1. The user opens the web application through Amazon CloudFront.
 2. AWS WAF validates the request and applies its security rules.
