@@ -197,6 +197,10 @@ Follow these steps from a terminal to deploy the Guidance to your AWS account:
     make -f makefile.aws open-website/main
     ```
 
+### Platform deploy and verify commands
+
+On the owner's agentic platform this fork's deploy command is `bash scripts/deploy.sh` and its verify command is `bash scripts/verify.sh`. The guidance itself is still deployed by hand with the steps above, so `scripts/deploy.sh` only acts on an `infra/` folder, Python dependencies or systemd user units if the repo gains them; `scripts/verify.sh` runs `scripts/verify-showcase.sh` and those same checks.
+
 ## Deployment validation, User guide and Cleanup
 For detailed guidance deployment steps, running the guidance and cleanup resources as a user please see the [Implementation Guide](./deployment/amazon-gamelift-streams/readme.md)
 
